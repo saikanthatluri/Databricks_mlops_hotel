@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: house-price
+Version: 0.0.1
+Summary: Housing prices project
+Requires-Python: <3.12,>=3.11
+Requires-Dist: mlflow==2.17.0
+Requires-Dist: cffi==1.17.1
+Requires-Dist: cloudpickle==3.1.0
+Requires-Dist: matplotlib==3.9.2
+Requires-Dist: numpy==1.26.4
+Requires-Dist: pandas==2.2.3
+Requires-Dist: psutil==6.0.0
+Requires-Dist: pyarrow==14.0.1
+Requires-Dist: scikit-learn==1.5.2
+Requires-Dist: lightgbm==4.5.0
+Requires-Dist: scipy==1.14.1
+Requires-Dist: databricks-feature-engineering==0.6
+Requires-Dist: databricks-feature-lookup==1.2.0
+Requires-Dist: databricks-sdk==0.32.0
+Requires-Dist: pydantic==2.9.2
+Requires-Dist: loguru==0.7.3
+Requires-Dist: marvelous@ git+https://github.com/end-to-end-mlops-databricks-3/marvelous@0.1.0
+Requires-Dist: xgboost>=3.0.0
+Requires-Dist: ipykernel>=6.29.5
+Requires-Dist: pytest-cov>=6.1.1
+Provides-Extra: dev
+Requires-Dist: databricks-connect==15.4.5; extra == "dev"
+Requires-Dist: ipykernel<7,>=6.29.5; extra == "dev"
+Requires-Dist: pip>=24.2; extra == "dev"
+Requires-Dist: pre-commit<5,>=4.1.0; extra == "dev"
+Requires-Dist: pytest<9,>=8.3.4; extra == "dev"
+Requires-Dist: pytest<9,>=8.3.4; extra == "dev"
+Provides-Extra: ci
+Requires-Dist: databricks-connect==15.4.5; extra == "ci"
+Requires-Dist: ipykernel<7,>=6.29.5; extra == "ci"
+Requires-Dist: pip>=24.2; extra == "ci"
+Requires-Dist: pre-commit<5,>=4.1.0; extra == "ci"
+Requires-Dist: pytest<9,>=8.3.4; extra == "ci"
+Requires-Dist: pytest<9,>=8.3.4; extra == "ci"
+Provides-Extra: test
+Requires-Dist: pre-commit<5,>=4.1.0; extra == "test"
+Requires-Dist: delta-spark==3.3.0; extra == "test"
+Requires-Dist: pyspark==3.5.5; extra == "test"
+Requires-Dist: pytest>=8.3.5; extra == "test"
+Requires-Dist: pytest-cov>=6.1.0; extra == "test"
+Requires-Dist: pydantic-settings>=2.8.1; extra == "test"
