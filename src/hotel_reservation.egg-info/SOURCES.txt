@@ -10,3 +10,5 @@ src/hotel_reservations/__init__.py
 src/hotel_reservations/config.py
 src/hotel_reservations/data_processor.py
 src/hotel_reservations/helper.py
+src/hotel_reservations/models/__init__.py
+src/hotel_reservations/models/basic_model.py
