@@ -61,9 +61,9 @@ class BasicModel:
         """        
         logger.info("Loads the data from the delta table")
         self.train_set_spark = self.spark.table(f"{self.catalog_name}.{self.schema_name}.train_set_hotel")
-        self.train_set = self.train_set_spark
+        self.train_set = self.train_set_spark.toPandas()
         self.test_set_spark = self.spark.table(f"{self.catalog_name}.{self.schema_name}.test_set_hotel")
-        self.test_set = self.test_set_spark
+        self.test_set = self.test_set_spark.toPandas()
         self.data_version = "0"
 
         self.X_train = self.train_set[self.num_features + self.cat_features]
