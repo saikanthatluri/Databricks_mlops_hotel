@@ -67,10 +67,10 @@ class BasicModel:
         self.data_version = "0"
 
         self.X_train = self.train_set[self.num_features + self.cat_features]
-        self.y_train = self.train_set[self.target]
+        self.y_train = self.train_set[self.target].replace(['Canceled', 'Not_Canceled'],[1,0])
 
         self.X_test = self.test_set[self.num_features + self.cat_features]
-        self.y_test = self.test_set[self.target]
+        self.y_test = self.test_set[self.target].replace(['Canceled', 'Not_Canceled'],[1,0])
         logger.info("Data loaded succesfully")
 
     def prepare_features(self) -> None:
