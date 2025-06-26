@@ -119,7 +119,7 @@ class BasicModel:
             signature = infer_signature(model_input=self.X_train, model_output=y_pred)
             dataset = mlflow.data.from_spark(
                 self.train_set_spark,
-                table_name = f"{self.catalog_name}.{self.schema_name}.tain_set_hotel",
+                table_name = f"{self.catalog_name}.{self.schema_name}.train_set_hotel",
                 version = self.data_version,
             )
             mlflow.log_input(dataset, context="training")
