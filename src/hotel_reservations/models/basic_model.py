@@ -127,25 +127,25 @@ class BasicModel:
                 sk_model=self.pipeline, artifact_path="lightgbm-pipeline-model", signature=signature
             )
 
-        def register_model(self) -> None:
-            """Register model in unity catalog.."""
-            logger.info("Regestering the model in UC..")
-            registered_model = mlflow.register_model(
-                model_uri=f"runs:/{self.run_id}/lightgbm-pipeline-model",
-                name = self.model_name,
-                tags = self.tags,
+    def register_model(self) -> None:
+        """Register model in unity catalog.."""
+        logger.info("Regestering the model in UC..")
+        registered_model = mlflow.register_model(
+            model_uri=f"runs:/{self.run_id}/lightgbm-pipeline-model",
+            name = self.model_name,
+            tags = self.tags,
             )
-            logger.info(f"Model registered as version {registered_model.version}.")
-            latest_version = registered_model.version
+        logger.info(f"Model registered as version {registered_model.version}.")
+        latest_version = registered_model.version
 
-            client = MlflowClient()
-            client.set_registered_model_alias(
-                name=self.model_name,
-                alias="latest-model",
-                version=latest_version,
-            )
+        client = MlflowClient()
+        client.set_registered_model_alias(
+            name=self.model_name,
+            alias="latest-model",
+            version=latest_version,
+        )
 
-        def retrieve_current_run_dataset(self) -> DatasetSource:
+    def retrieve_current_run_dataset(self) -> DatasetSource:
             """Retrieve MLflow run dataset.
 
             :return: Loaded dataset source
@@ -156,34 +156,34 @@ class BasicModel:
             logger.info("✅ Dataset source loaded.")
             return dataset_source.load()
         
-        def retrieve_current_run_metadata(self) -> tuple[dict, dict]:
-            """Retrieve MLflow run metadata.
+    def retrieve_current_run_metadata(self) -> tuple[dict, dict]:
+        """Retrieve MLflow run metadata.
 
-            :return: Tuple containing metrics and parameters dictionaries
-            """
-            run = mlflow.get_run(self.run_id)
-            metrics = run.data.to_dictionary()["metrics"]
-            params = run.data.to_dictionary()["params"]
-            logger.info("✅ Dataset metadata loaded.")
-            return metrics, params
+        :return: Tuple containing metrics and parameters dictionaries
+        """
+        run = mlflow.get_run(self.run_id)
+        metrics = run.data.to_dictionary()["metrics"]
+        params = run.data.to_dictionary()["params"]
+        logger.info("✅ Dataset metadata loaded.")
+        return metrics, params
         
-        def load_latest_model_and_predict(self, input_data: pd.DataFrame) -> np.ndarray:
-            """Load the latest model from MLflow (alias=latest-model) and make predictions.
+    def load_latest_model_and_predict(self, input_data: pd.DataFrame) -> np.ndarray:
+        """Load the latest model from MLflow (alias=latest-model) and make predictions.
 
-            Alias latest is not allowed -> we use latest-model instead as an alternative.
+        Alias latest is not allowed -> we use latest-model instead as an alternative.
 
-            :param input_data: Pandas DataFrame containing input features for prediction.
-            :return: Pandas DataFrame with predictions.
-            """
-            logger.info("🔄 Loading model from MLflow alias 'production'...")
+        :param input_data: Pandas DataFrame containing input features for prediction.
+        :return: Pandas DataFrame with predictions.
+        """
+        logger.info("🔄 Loading model from MLflow alias 'production'...")
 
-            model_uri = f"models:/{self.model_name}@latest-model"
-            model = mlflow.sklearn.load_model(model_uri)
+        model_uri = f"models:/{self.model_name}@latest-model"
+        model = mlflow.sklearn.load_model(model_uri)
 
-            logger.info("✅ Model successfully loaded.")
+        logger.info("✅ Model successfully loaded.")
 
-            # Make predictions
-            predictions = model.predict(input_data)
+        # Make predictions
+        predictions = model.predict(input_data)
 
-            # Return predictions as a DataFrame
-            return predictions
+        # Return predictions as a DataFrame
+        return predictions
