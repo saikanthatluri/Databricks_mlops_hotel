@@ -24,7 +24,7 @@ from sklearn.metrics import accuracy_score, f1_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 
-from hotel_reservations import Tags, ProjectConfig
+from hotel_reservations.config import Tags, ProjectConfig
 
 class BasicModel:
     """A basic model class for hotel reservation using LightGBM.
